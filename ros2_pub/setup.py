@@ -20,6 +20,8 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
+            'number_publisher = ros2_pub.main:main'
+            #name = pkg_name.file_name:ros_fun_name
         ],
     },
 )
