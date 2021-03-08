@@ -14,8 +14,10 @@ class AsyncClient(Node):
         self.req = MathsSrv.Request()
     
     def send_request(self):
-        self.req.a = int(sys.argv[1])
-        self.req.b = int(sys.argv[2])
+        self.req.a = 859
+        self.req.b = 586
+        # self.req.a = int(sys.argv[1])
+        # self.req.b = int(sys.argv[2])
         self.future = self.client.call_async(self.req)
 
 def main(args=None):
