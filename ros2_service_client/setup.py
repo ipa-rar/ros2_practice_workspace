@@ -20,6 +20,7 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
+            'async_client=ros2_service_client.main:main'
         ],
     },
 )

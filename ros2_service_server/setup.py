@@ -20,6 +20,7 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
+            'add_numbers_server = ros2_service_server.main:main'
         ],
     },
 )
