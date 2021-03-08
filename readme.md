@@ -113,3 +113,9 @@ from launch_ros.actions import Node
         call_async(request)
 
 -        wait_for_service(timeout_sec=None)
+
+## TODOS
+- ros2_action_server and client
+- ros2_lifecycle
+- Passing arguments via launch files. 
+- parameters load and use
