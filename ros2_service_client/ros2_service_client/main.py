@@ -4,7 +4,7 @@ from rclpy.node import Node
 import sys
 from ros2_interface.srv import MathsSrv
 
-class AsncClient(Node):
+class AsyncClient(Node):
 
     def __init__(self):
         super().__init__('async_client')
@@ -21,7 +21,7 @@ class AsncClient(Node):
 def main(args=None):
     rclpy.init(args=args)
     try:
-        add_client = AsncClient()
+        add_client = AsyncClient()
         add_client.send_request()
 
         while rclpy.ok():

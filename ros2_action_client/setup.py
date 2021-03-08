@@ -2,7 +2,7 @@ import os
 from glob import glob
 from setuptools import setup
 
-package_name = 'ros2_pub'
+package_name = 'ros2_action_client'
 
 setup(
     name=package_name,
@@ -16,15 +16,13 @@ setup(
     ],
     install_requires=['setuptools'],
     zip_safe=True,
-    maintainer='ragesh_ramachandran',
+    maintainer='ragesh',
     maintainer_email='ragesh.ramachandran@ipa.fraunhofer.de',
     description='TODO: Package description',
     license='TODO: License declaration',
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'number_publisher = ros2_pub.main:main'
-            #name = pkg_name.file_name:ros_fun_name
         ],
     },
 )
