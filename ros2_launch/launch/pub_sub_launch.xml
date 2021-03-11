@@ -1,0 +1,4 @@
+<launch>
+    <node pkg="ros2_pub" exec="number_publisher" output="screen"/>
+    <node pkg="ros2_sub" exec="number_subscriber" output="screen"/>
+</launch>

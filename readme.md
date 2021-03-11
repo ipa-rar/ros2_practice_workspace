@@ -6,10 +6,28 @@
 ```
 
 ## ros2_interface
+- A pkg to add new msg, srv or act interfaces used in this stack.
+- This pkg uses `ament_cmake` build system as there is currently no way to generate .msg and .srv file in a pure python package
 - msg and srv should follow strictly `SomeMsg.msg/SomeSrv.srv`
-- use ament_cmake build type for the interfaces pkg.
+- Add these to the `package.xml` as they rely on `rosidl_default_generators` for generating language-specific code.
+```
+  <!-- This is added to generate msgs nd srv -->
+  <build_depend>rosidl_default_generators</build_depend>
+  <exec_depend>rosidl_default_runtime</exec_depend>
+  <member_of_group>rosidl_interface_packages</member_of_group>
+```
+- Add these lines to `CMakeLists.txt` to cnovert the interfaces you defined into language specific code.
+```
+# for generating msgs and srvs
+find_package(rosidl_default_generators REQUIRED)
+rosidl_generate_interfaces(${PROJECT_NAME}
+  "msg/MathsMsg.msg"
+  "srv/MathsSrv.srv"
+ )
+```
 
 ## ros2_pub & ros2_sub
+- A pkg that publishes and subscribes `MathsMsg` over `/maths_topic`
 - When using any msgs add them to the `package.xml` as `<depend>msg_type</depend>`
 - To avoid error during a keyboard interrupt add an exception 
 ```
@@ -28,11 +46,24 @@ except KeyboardInterrupt:
     - setup.py for adding the pub and sub executable names
 
 ## ros2_service_client & ros2_service_server
--The type and name of the service must match for the client and service to communicate
+- A pkg to demo ros2 service client and server. Client sends requests  and server responds back over `MathsSrv` service.
+- The type and name of the service must match for the client and service to communicate.
 
-## Writing ros2 Launch files
-- Create a `/launch` folder inside the pkg and *.py file
-- Boilerplate code for launch_file.py 
+## ros2_launch
+### Launch files using python scripts
+- Create a `/launch` folder inside the pkg create a `*.py` file
+
+- Add this line to `Setup.py` so that colcon build can find it during the build process
+```
+    import os
+    from glob import glob
+    data_files=[
+        ................................. ,
+        ................................. ,
+        (os.path.join('share', package_name), glob('launch/*.py'))
+    ],
+```
+- Boilerplate code for `launch_file.py `
 ```
 from launch import LaunchDescription
 from launch_ros.actions import Node
@@ -53,15 +84,17 @@ from launch_ros.actions import Node
 
   return ld
 ```
-- Add this line to Setup.py
+### Launch files using xml file
+- Create a `.xml` file inside the `/launch` folder and use this as template. 
 ```
-    import os
-    from glob import glob
-    data_files=[
-        ................................. ,
-        ................................. ,
-        (os.path.join('share', package_name), glob('launch/*.py'))
-    ],
+<launch>
+    <node pkg="ros2_pub" exec="number_publisher" output="screen"/>
+    <node pkg="ros2_sub" exec="number_subscriber" output="screen"/>
+</launch>
+```
+- To launch the nodes use 
+```
+ros2 launch path/to/the/launch/file.xml
 ```
 ## Resolving dependencies
 

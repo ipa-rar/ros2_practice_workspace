@@ -15,7 +15,7 @@ class NumberSubscriber(Node):
         )
     
     def subscriber_cb(self, msg):
-        self.get_logger().info('"%d" is converted to"%f'%(msg.result, msg.result/2))
+        self.get_logger().info('"%d" is converted to"%f'%(msg.result, msg.result**2))
 
 def main(args=None):
     rclpy.init(args=args)
