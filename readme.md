@@ -1,4 +1,4 @@
-## Some tips and notes made during the ros2 practice session
+## Some tips and notes for ros2 dummies
 ## common
 - Always add the nodes @entry_points of the setup.py 
 ```
@@ -84,6 +84,8 @@ from launch_ros.actions import Node
 
   return ld
 ```
+
+[launch files ref](https://git.fh-aachen.de/lm9299s/agv/-/tree/master/launch)
 ### Launch files using xml file
 - Create a `.xml` file inside the `/launch` folder and use this as template. 
 ```
