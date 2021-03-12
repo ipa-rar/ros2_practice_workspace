@@ -149,6 +149,9 @@ ros2 launch path/to/the/launch/file.xml
 
 -        wait_for_service(timeout_sec=None)
 
+## ros2_linting
+[ref to ament_linting](https://ubuntu.com/blog/how-to-add-a-linter-to-ros-2)
+
 ## TODOS
 - ros2_action_server and client
 - ros2_lifecycle
